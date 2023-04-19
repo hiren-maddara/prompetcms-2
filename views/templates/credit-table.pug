@@ -1,0 +1,134 @@
+extends ./../index.pug
+
+mixin tableRow(date, driver, plateNumber, amount, collected, employee, shift, balance, id)
+  - let bal = (amount - collected)*1 
+  - bal = bal > 0 ? bal : 0
+  tr.bg-white.border-b(class='table-row dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600')
+    td.w-4.p-4
+      .flex.items-center
+        input#checkbox-table-search-1.w-4.h-4.text-blue-600.bg-gray-100.border-gray-300(type='checkbox' class='focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600')
+        label.sr-only(for='checkbox-table-search-1') checkbox
+    td.px-6.py-4= date
+    th.px-6.py-4.font-medium.text-gray-900.whitespace-nowrap(scope='row' class='dark:text-white')= driver
+    td.px-6.py-4= plateNumber
+    td.px-6.py-4= amount
+    td.px-6.py-4= collected
+    td.px-6.py-4= employee
+    td.px-6.py-4= shift
+    td.px-6.py-4= balance
+    td.flex.items-center.px-6.py-4.space-x-3
+      a.font-medium.text-blue-600(href='#' class='dark:text-blue-500 hover:underline') Edit
+      a.font-medium.text-red-600(href=`/report/${id}` class='dark:text-red-500 hover:underline' data-id=`${id}`) Report
+
+
+block main 
+  section(class="relative h-screen w-full overflow-x-auto shadow-md")
+    .relative.bg-white.shadow-md(class='dark:bg-gray-800')
+      .flex.flex-col.items-center.justify-between.p-4.space-y-3(class='md:flex-row md:space-y-0 md:space-x-4')
+        .flex.flex-col.items-stretch.justify-end.flex-shrink-0.w-full.space-y-2(class='md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3')
+          button.flex.items-center.justify-center.px-4.py-2.text-sm.font-medium.text-white.bg-primary-700(type='button' class='hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800')
+            svg.mr-2(class='h-3.5 w-3.5' fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' aria-hidden='true')
+              path(clip-rule='evenodd' fill-rule='evenodd' d='M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z')
+            | New credit
+          .flex.items-center.w-full.space-x-3(class='md:w-auto')
+            button#actionsDropdownButton.flex.items-center.justify-center.w-full.px-4.py-2.text-sm.font-medium.text-gray-900.bg-white.border.border-gray-200(data-dropdown-toggle='actionsDropdown' class='md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700' type='button')
+              svg.-ml-1.w-5.h-5(class='mr-1.5' fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' aria-hidden='true')
+                path(clip-rule='evenodd' fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z')
+              | Actions
+            #actionsDropdown.z-10.hidden.bg-white.divide-y.divide-gray-100.shadow.w-44(class='dark:bg-gray-700 dark:divide-gray-600')
+              ul.py-1.text-sm.text-gray-700(class='dark:text-gray-200' aria-labelledby='actionsDropdownButton')
+                li
+                  a.block.px-4.py-2(href='#' class='hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white')
+                    | Mass
+                    | Edit
+              .py-1
+                a.block.px-4.py-2.text-sm.text-gray-700(href='#' class='hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white')
+                  | Delete
+                  | all
+            button#filterDropdownButton.flex.items-center.justify-center.w-full.px-4.py-2.text-sm.font-medium.text-gray-900.bg-white.border.border-gray-200(data-dropdown-toggle='filterDropdown' class='md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700' type='button')
+              svg.w-4.h-4.mr-2.text-gray-400(xmlns='http://www.w3.org/2000/svg' aria-hidden='true' viewbox='0 0 20 20' fill='currentColor')
+                path(fill-rule='evenodd' d='M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z' clip-rule='evenodd')
+              | Filter
+              svg.-mr-1.w-5.h-5(class='ml-1.5' fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' aria-hidden='true')
+                path(clip-rule='evenodd' fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z')
+            // Dropdown menu
+            #filterDropdown.z-10.hidden.w-48.p-3.bg-white.shadow(class='dark:bg-gray-700')
+              h6.mb-3.text-sm.font-medium.text-gray-900(class='dark:text-white')
+                | Category
+              ul.space-y-2.text-sm(aria-labelledby='dropdownDefault')
+                li.flex.items-center
+                  input#apple.w-4.h-4.bg-gray-100.border-gray-300.text-primary-600(type='checkbox' value='' class='focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500')
+                  label.ml-2.text-sm.font-medium.text-gray-900(for='apple' class='dark:text-gray-100')
+                    | Apple (56)
+                li.flex.items-center
+                  input#fitbit.w-4.h-4.bg-gray-100.border-gray-300.text-primary-600(type='checkbox' value='' class='focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500')
+                  label.ml-2.text-sm.font-medium.text-gray-900(for='fitbit' class='dark:text-gray-100')
+                    | Fitbit (56)
+                li.flex.items-center
+                  input#dell.w-4.h-4.bg-gray-100.border-gray-300.text-primary-600(type='checkbox' value='' class='focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500')
+                  label.ml-2.text-sm.font-medium.text-gray-900(for='dell' class='dark:text-gray-100')
+                    | Dell (56)
+                li.flex.items-center
+                  input#asus.w-4.h-4.bg-gray-100.border-gray-300.text-primary-600(type='checkbox' value='' checked='' class='focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500')
+                  label.ml-2.text-sm.font-medium.text-gray-900(for='asus' class='dark:text-gray-100')
+                    | Asus (97)
+
+    table(class="w-full text-sm text-left text-gray-500 dark:text-gray-400")
+      thead.text-xs.text-gray-700.uppercase.bg-gray-50(class='dark:bg-gray-700 dark:text-gray-400')
+        tr
+          th.p-4(scope='col')
+            .flex.items-center
+              input#checkbox-all-search.w-4.h-4.text-blue-600.bg-gray-100.border-gray-300(type='checkbox' class='focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600')
+              label.sr-only(for='checkbox-all-search') checkbox
+          th.px-6.py-3(scope='col')
+            | Date
+          th.px-6.py-3(scope='col')
+            | Driver's Name
+          th.px-6.py-3(scope='col')
+            | Plate Number
+          th.px-6.py-3(scope='col')
+            | Amount of credit
+          th.px-6.py-3(scope='col')
+            | Amount collected
+          th.px-6.py-3(scope='col')
+            | Employee
+          th.px-6.py-3(scope='col')
+            | Shift
+          th.px-6.py-3(scope='col')
+            | Balance
+          th.px-6.py-3(scope='col')
+            | Actions
+      tbody 
+        each credit in credits
+          +tableRow(credit.date, credit.driver, credit.plateNumber, credit.creditAmount, credit.collectedAmount, credit.employee, credit.shift, credit.runningBalance, credit._id)
+
+    .relative.overflow-hidden.bg-white.shadow-md(class='dark:bg-gray-800')
+      nav.flex.flex-col.items-start.justify-between.p-4.space-y-3(class='md:flex-row md:items-center md:space-y-0' aria-label='Table navigation')
+        span.text-sm.font-normal.text-gray-500(class='dark:text-gray-400')
+          | Showing 
+          span.font-semibold.text-gray-900(class='dark:text-white') 1-10
+          |  of 
+          span.font-semibold.text-gray-900(class='dark:text-white') 1000
+        ul.inline-flex.items-stretch.-space-x-px
+          li
+            a.flex.items-center.justify-center.h-full.px-3.ml-0.text-gray-500.bg-white.border.border-gray-300(href='#' class='py-1.5 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white')
+              span.sr-only Previous
+              svg.w-5.h-5(aria-hidden='true' fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+                path(fill-rule='evenodd' d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z' clip-rule='evenodd')
+          li
+            a.flex.items-center.justify-center.px-3.py-2.text-sm.leading-tight.text-gray-500.bg-white.border.border-gray-300(href='#' class='hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white') 1
+          li
+            a.flex.items-center.justify-center.px-3.py-2.text-sm.leading-tight.text-gray-500.bg-white.border.border-gray-300(href='#' class='hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white') 2
+          li
+            a.z-10.flex.items-center.justify-center.px-3.py-2.text-sm.leading-tight.border.text-primary-600.bg-primary-50.border-primary-300(href='#' aria-current='page' class='hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white') 3
+          li
+            a.flex.items-center.justify-center.px-3.py-2.text-sm.leading-tight.text-gray-500.bg-white.border.border-gray-300(href='#' class='hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white') ...
+          li
+            a.flex.items-center.justify-center.px-3.py-2.text-sm.leading-tight.text-gray-500.bg-white.border.border-gray-300(href='#' class='hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white') 100
+          li
+            a.flex.items-center.justify-center.h-full.px-3.leading-tight.text-gray-500.bg-white.border.border-gray-300(href='#' class='py-1.5 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white')
+              span.sr-only Next
+              svg.w-5.h-5(aria-hidden='true' fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+                path(fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd')
+
+    

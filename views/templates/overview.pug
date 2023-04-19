@@ -1,0 +1,52 @@
+extends ./../index.pug
+
+block main 
+    div(class="max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8")
+        div(class="grid grid-cols-1, gap-y-8, lg:grid-cols-2, lg:items-center, lg:gap-x-16")
+            .mx-auto.max-w-lg.text-center.mb-8
+                h2.text-3xl.font-bold(class='sm:text-4xl') Prompet Credit Management System
+                p.mt-4.text-gray-600
+                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut vero
+                    | aliquid sint distinctio iure ipsum cupiditate? Quis, odit assumenda?
+                    | Deleniti quasi inventore, libero reiciendis minima aliquid tempora.
+                    | Obcaecati, autem.
+                a.mt-8.inline-block.rounded.bg-indigo-600.px-12.py-3.text-sm.font-medium.text-white.transition(href='#' class='hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400')
+                    | Choose an option
+
+            .grid.grid-cols-2.gap-4(class='sm:grid-cols-3')
+                a.block.rounded-xl.border.border-gray-100.p-4.shadow-sm(class='hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring' href='/login')
+                    span.inline-block.rounded-lg.bg-gray-50.p-3
+                    ion-icon.h-6.w-6(name="log-in-outline")
+                    h2.mt-2.font-bold Sign in
+                    p.hidden(class='sm:mt-1 sm:block sm:text-sm sm:text-gray-600')
+                    | Lorem ipsum dolor sit amet consectetur.
+                a.block.rounded-xl.border.border-gray-100.p-4.shadow-sm(class='hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring' href='/new-credit')
+                    span.inline-block.rounded-lg.bg-gray-50.p-3
+                    ion-icon.h-6.w-6(name="duplicate-outline")
+                    h2.mt-2.font-bold Add credit
+                    p.hidden(class='sm:mt-1 sm:block sm:text-sm sm:text-gray-600')
+                    | Lorem ipsum dolor sit amet consectetur.
+                a.block.rounded-xl.border.border-gray-100.p-4.shadow-sm(class='hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring' href='/sign-up')
+                    span.inline-block.rounded-lg.bg-gray-50.p-3
+                    ion-icon.h-6.w-6(name="log-out-outline")
+                    h2.mt-2.font-bold Sign up
+                    p.hidden(class='sm:mt-1 sm:block sm:text-sm sm:text-gray-600')
+                    | Lorem ipsum dolor sit amet consectetur.
+                a.block.rounded-xl.border.border-gray-100.p-4.shadow-sm(class='hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring' href='/credits')
+                    span.inline-block.rounded-lg.bg-gray-50.p-3
+                    ion-icon.h-6.w-6(name="reader-outline")
+                    h2.mt-2.font-bold View credits
+                    p.hidden(class='sm:mt-1 sm:block sm:text-sm sm:text-gray-600')
+                    | Lorem ipsum dolor sit amet consectetur.
+                a.block.rounded-xl.border.border-gray-100.p-4.shadow-sm(class='hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring' href='/database')
+                    span.inline-block.rounded-lg.bg-gray-50.p-3
+                    ion-icon.h-6.w-6(name="server-outline")
+                    h2.mt-2.font-bold Manage Database
+                    p.hidden(class='sm:mt-1 sm:block sm:text-sm sm:text-gray-600')
+                    | Lorem ipsum dolor sit amet consectetur.
+                a.block.rounded-xl.border.border-gray-100.p-4.shadow-sm(class='hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring' href='/admin')
+                    span.inline-block.rounded-lg.bg-gray-50.p-3
+                    ion-icon.h-6.w-6(name="stats-chart-outline")
+                    h2.mt-2.font-bold Admin options
+                    p.hidden(class='sm:mt-1 sm:block sm:text-sm sm:text-gray-600')
+                    | Lorem ipsum dolor sit amet consectetur.

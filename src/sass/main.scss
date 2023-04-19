@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+body {
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-columns: 1fr;
+}
+
+main{
+    grid-row: 2 / span 1;
+}
+
+header {
+    grid-row: 1 / span 1;
+}
+
+footer{
+    grid-row: 3 / span 1;
+}
+
+ion-icon {
+    --ionicon-stroke-width: 2.5rem;
+    --ionicon-stroke: currentColor;
+    --ionicon-fill: none;
+    
+}
+
+.alert{
+    position: absolute;
+    opacity: .9;
+    left: 50%;
+    transform: translate(-50%, .6rem);
+    transition: all .3s;
+}

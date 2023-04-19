@@ -1,0 +1,26 @@
+header.bg-gray-50(aria-label='Page Header')
+  .mx-auto.max-w-screen-xl.px-4.py-1(class='sm:px-6 lg:px-8')
+    .flex.items-center(class='sm:justify-between sm:gap-4')
+      .relative.hidden(class='sm:block')
+        label.sr-only(for='search')  Search 
+        input#search.h-10.w-full.bg-white.pl-4.pr-10.text-sm.shadow-sm(class='sm:w-56' type='search' placeholder='Search website...')
+        button.bg-transparent.absolute.right-1.rounded-md.bg-gray-50.p-2.text-gray-600.transition(class='top-1/2 -translate-y-1/2 hover:text-gray-700' type='button')
+          span.sr-only Search
+          ion-icon.h-5.w-5.inline-block(name="search-outline")
+      .flex.flex-1.items-center.justify-between.gap-8(class='sm:justify-end')
+        .flex.gap-4
+          button.bg-transparent.block.shrink-0.rounded-lg.bg-white.text-gray-600.shadow-sm(type='button' class='p-2.5 hover:text-gray-700 sm:hidden')
+            span.sr-only Search
+            ion-icon.h-5.w-5.inline-block(name="search-outline" fill="none" )
+          //- a.block.shrink-0.rounded-lg.bg-white.text-gray-600.shadow-sm(href='#' class='p-2.5 hover:text-gray-700')
+          //-   span.sr-only Notifications
+          //-   ion-icon.h-5.w-5.inline-block(name="notifications-outline")
+
+        if user
+          button.group.flex.shrink-0.items-center.rounded-lg.transition(type='button')
+            span.sr-only Menu
+            img.h-10.w-10.rounded-full.object-cover(alt='Man' src=`${user.profileImg.startsWith('/img/') ? user.profileImg: '/img/users/default.jpg'}`)
+            p.ml-2.hidden.text-left.text-xs(class='sm:block')
+              strong.block.font-medium#currentEmployee= user.userName
+              span.text-gray-500= user.email
+            ion-icon.ml-4.hidden.h-5.w-5.text-gray-500.transition(class='group-hover:text-gray-700 sm:block' name="chevron-down-outline")   

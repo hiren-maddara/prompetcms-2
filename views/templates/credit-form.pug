@@ -1,0 +1,32 @@
+extends ./../index.pug
+block main
+    main.main 
+        section.bg-white.block.h-full(class='dark:bg-gray-900')
+            form.py-8.px-4.mx-auto.max-w-2xl(action='#' class='lg:py-16' id="credit_form")
+                h2.mb-4.text-xl.font-bold.text-gray-900(class='dark:text-white') Add new credit
+                .grid.gap-4(class='sm:grid-cols-2 sm:gap-6')
+                    div(class='sm:col-span-2')
+                        label.block.mb-2.text-sm.font-medium.text-gray-900(for='driverName' class='dark:text-white') Driver Name
+                        input#driverName.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.block.w-full(type='text' name='driverName' class='focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500' placeholder="Enter driver's name" required='')
+                    .w-full
+                        label.block.mb-2.text-sm.font-medium.text-gray-900(for='plate' class='dark:text-white') Plate
+                        input#plate.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.block.w-full(type='text' name='plate' class='focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500' placeholder='Car plate number' required='')
+                    .w-full
+                        label.block.mb-2.text-sm.font-medium.text-gray-900(for='creditAmount' class='dark:text-white') Credit Amount
+                        input#creditAmount.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.block.w-full(type='number' name='creditAmount' class='focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500' placeholder='UGX' required='')
+                    div
+                        label.block.mb-2.text-sm.font-medium.text-gray-900(for='shift' class='dark:text-white') Shift
+                        select#shift.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.block.w-full(class='focus:ring-primary-500 focus:border-primary-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500')
+                            option(selected='') Select shift
+                            option(value='Day') Day
+                            option(value='Night') Night
+                    div
+                        label.block.mb-2.text-sm.font-medium.text-gray-900(for='collectedAmount' class='dark:text-white') Collected Amount
+                        input#collectedAmount.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.block.w-full(type='number' name='collectedAmount' class='focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500' placeholder='UGX' required='')
+
+                    //- div(class='sm:col-span-2')
+                    //-     label.block.mb-2.text-sm.font-medium.text-gray-900(for='comments' class='dark:text-white') Add comments
+                    //-     textarea#comments.block.w-full.text-sm.text-gray-900.bg-gray-50.border.border-gray-300(rows='8' class='p-2.5 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500' placeholder='Enter any comments about the credit')
+
+                button.inline-flex.items-center.px-5.mt-4.text-sm.font-medium.text-center.text-white.bg-blue-900(type='submit' class='py-2.5 sm:mt-6 focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800' id="btn-save") Save credit
+

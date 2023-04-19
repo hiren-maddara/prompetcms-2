@@ -1,0 +1,116 @@
+extends ./../index.pug
+
+block main
+    if credit
+        .justify-center.m-8(class='md:flex')
+            .w-full
+                .p-6.rounded-md.shadow.bg-white.border
+                    .border-b.border-gray-100.pb-6(class='dark:border-gray-700')
+                        .justify-between(class='md:flex')
+                            div
+                                img.block(src='assets/images/logo-dark.png' class='dark:hidden' alt='')
+                                img.hidden(src='assets/images/logo-light.png' class='dark:block' alt='')
+                                .flex.mt-4
+                                ion-icon.h-4.w-4.mr-3.mt-1(name="at-outline")
+                                a.text-indigo-600.font-medium(href='https://www.prompetcms.org' target='_blank') https://www.prompetcms.org
+                            .mt-6(class='md:mt-0 md:w-56')
+                                h5.text-lg.font-semibold Address:
+                                ul.list-none
+                                li.flex.mt-3
+                                    ion-icon.h-4.w-4.mr-3.mt-1(name="location-outline")
+                                    a.lightbox.text-slate-400(href='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin' data-type='iframe')
+                                    | P.O Box 45, Kla,
+                                    br
+                                    |  3km Bombo road
+                                li.flex.mt-3
+                                    ion-icon.h-4.w-4.mr-3.mt-1(name="mail-outline")
+                                    a.text-slate-400(href='mailto:contact@example.com') info@prompet.cms
+                                li.flex.mt-3
+                                    ion-icon.h-4.w-4.mr-3.mt-1(name="call-outline")
+                                    a.text-slate-400(href='tel:+152534-468-854') (+256) 708979963
+
+                    .justify-between(class='md:flex')
+                        .mt-6
+                            h5.text-lg.font-semibold Report Details :
+                            ul.list-none
+                            li.flex.mt-3
+                                span.w-24 Report No. :
+                                span.text-slate-400 pmpt123
+                            li.flex.mt-3
+                                span.w-24 Name :
+                                span.text-slate-400= credit.driver
+                            li.flex.mt-3
+                                span.w-24 Address :
+                                span.text-slate-400
+                                | 1962 William Street, 
+                                br
+                                |  Kampala, P.O 92123
+                            li.flex.mt-3
+                                span.w-24 Phone :
+                                span.text-slate-400 (+256) 708-979-695
+                        .mt-3(class='md:w-56')
+                            ul.list-none
+                            li.flex.mt-3
+                                span.w-24 Date :
+                                -const date = new Date(Date.now())
+                                span.text-slate-400= `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+
+                    .relative.overflow-x-auto.shadow.rounded-md.mt-6(class='dark:shadow-gray-800')
+                        table.w-full.text-left.text-slate-500(class='')
+                            thead.text-sm.uppercase.bg-slate-50(class='')
+                                tr
+                                    th.px-6.py-3.w-16(scope='col')
+                                        | No.
+                                    th.px-6.py-3(scope='col')
+                                        | Date
+                                    th.px-6.py-3.w-20(scope='col')
+                                        | Driver&apos;s Name
+                                    th.px-6.py-3.w-28(scope='col')
+                                        | Plate
+                                    th.px-6.py-3.w-20(scope='col')
+                                        | Credit amount
+                                    th.px-6.py-3.w-20(scope='col')
+                                        | Collected amount
+                                    th.px-6.py-3.w-20(scope='col')
+                                        | Employee
+                                    th.px-6.py-3.w-20(scope='col')
+                                        | Shift
+                                    th.px-6.py-3.w-20(scope='col')
+                                        | Balance
+                            tbody
+                                tr.bg-white(class='')
+                                    td.px-6.py-4 1
+                                    th.px-6.py-4.font-medium.text-gray-900.whitespace-nowrap(scope='row')= credit.date
+                                    td.px-6.py-4= credit.driver
+                                    td.px-6.py-4= credit.plateNumber 
+                                    td.px-6.py-4= credit.creditAmount
+                                    td.px-6.py-4= credit.collectedAmount
+                                    td.px-6.py-4= credit.employee 
+                                    td.px-6.py-4= credit.shift
+                                    td.px-6.py-4= credit.runningBalance
+                                
+                    .w-56.ml-auto.p-5
+                        ul.list-none
+                            li.text-slate-400.flex.justify-between
+                            span Credit :
+                            span= `UGX ${credit.creditAmount}`
+                            li.text-slate-400.flex.justify-between.mt-2
+                            span Cashed :
+                            span= `UGX ${credit.collectedAmount}`
+                            li.flex.justify-between.font-semibold.mt-2
+                            span Balance :
+                            span= `UGX ${credit.runningBalance}`
+
+                    .invoice-footer.border-t.border-gray-100.pt-6(class='dark:border-gray-700')
+                        .justify-between(class='md:flex')
+                            div
+                            .text-slate-400.text-center(class='md:text-left')
+                                h6.mb-0
+                                | Customer Services : 
+                                a.text-amber-500(href='tel:+152534-468-854') (+256) 798-979-856
+                            .mt-4(class='md:mt-0')
+                            .text-slate-400.text-center(class='md:text-right')
+                                h6.mb-0
+                                a.text-indigo-600(href='page-terms.html' target='_blank')
+                                    | Terms
+                                    | &amp; Conditions
