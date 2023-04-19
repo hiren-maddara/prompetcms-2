@@ -12,7 +12,10 @@ class User extends Model {
       // console.log(this._id);
       const newToken = jwt.sign(
         { _userID: this._userID },
-        "MY_UNGU3S5AB!E-S#CR3T"
+        process.env.JWT_SECRET,
+        {
+          expiresIn: Number(process.env.JWT_TOKEN_EXPIRY) * 60 * 60 * 1000,
+        }
       );
       this.token = newToken;
       await this.save();

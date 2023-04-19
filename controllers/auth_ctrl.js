@@ -11,7 +11,9 @@ exports.login = async (req, res) => {
     const token = await user.generateAuthToken();
 
     res.cookie("jwt", token, {
-      expires: new Date(Date.now() + 20 * 3600 * 1000),
+      expires: new Date(
+        Date.now() + Number(process.env.JWT_COOKIE_EXPIRY) * 60 * 60 * 1000
+      ),
       httpOnly: true,
     });
 
@@ -39,7 +41,7 @@ exports.isLoggedIn = async (req, res, next) => {
     try {
       const decoded = await promisify(jwt.verify)(
         req.cookies.jwt,
-        "MY_UNGU3S5AB!E-S#CR3T"
+        process.env.JWT_SECRET
       );
 
       const user = await User.findOne({
@@ -67,7 +69,7 @@ exports.isLoggedIn = async (req, res, next) => {
 
 exports.authenticate = async (req, res, next) => {
   try {
-    const token = jwt.verify(req.cookies.jwt, "MY_UNGU3S5AB!E-S#CR3T");
+    const token = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
 
     const user = await User.findOne({
       where: {
